@@ -1,174 +1,1523 @@
-<!-- =========================
-     ENGAGEMENT CELEBRATION
-========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<section class="celebration-section">
+<title>Mrinal & Rimpa | Engagement</title>
 
-    <!-- Decorative floating petals -->
-    <div class="floating-petals">
-        <span class="petal petal-1">🌸</span>
-        <span class="petal petal-2">🌸</span>
-        <span class="petal petal-3">🌸</span>
-        <span class="petal petal-4">🌸</span>
-        <span class="petal petal-5">🌸</span>
-        <span class="petal petal-6">🌸</span>
-    </div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Golden particles -->
-    <div class="gold-particles">
-        <span>✦</span>
-        <span>•</span>
-        <span>✦</span>
-        <span>•</span>
-        <span>✦</span>
-        <span>•</span>
-        <span>✦</span>
-        <span>•</span>
-    </div>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <div class="celebration-container">
+<style>
 
-        <!-- Heading -->
-        <div class="celebration-heading">
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-            <div class="celebration-kicker">
-                CELEBRATIONS
-            </div>
+:root {
+    --ivory: #fbf8f1;
+    --cream: #f4eee2;
+    --gold: #c9a66b;
+    --dark-gold: #9d763d;
+    --rose: #a97868;
+    --brown: #332923;
+    --text: #4b4039;
+    --white: #fffdf8;
+}
 
-            <h2>
-                Our Engagement Celebration
-            </h2>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            <div class="heading-ornament">
-                <span></span>
-                <b>♥</b>
-                <span></span>
-            </div>
+html {
+    scroll-behavior: smooth;
+}
 
-            <p>
-                An evening filled with love, laughter and togetherness.<br>
-                Join us as we begin our forever with a beautiful ring ceremony,
-                <br class="desktop-only">
-                delicious food, energetic dance and wonderful music.
-            </p>
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--ivory);
+    color: var(--text);
+    overflow-x: hidden;
+}
 
-        </div>
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================================
+   PAGE LOADER
+========================================================= */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: var(--ivory);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-ring {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1px solid rgba(157,118,61,.2);
+    border-top-color: var(--gold);
+    animation: rotate 1.4s linear infinite;
+    margin: auto;
+}
+
+.loader-name {
+    margin-top: 18px;
+    font-family: "Great Vibes", cursive;
+    font-size: 38px;
+    color: var(--dark-gold);
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music-button {
+    position: fixed;
+    right: 22px;
+    top: 22px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.5);
+    background: rgba(35,27,21,.45);
+    backdrop-filter: blur(12px);
+    color: white;
+    z-index: 999;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+.music-playing {
+    animation: musicPulse 1.5s infinite;
+}
+
+@keyframes musicPulse {
+    50% {
+        box-shadow: 0 0 0 9px rgba(255,255,255,.08);
+    }
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particle-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #e4c486;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(228,196,134,.8);
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+
+    0% {
+        transform: translateY(110vh) scale(.5);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(-20vh) translateX(80px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   PETALS
+========================================================= */
+
+.petal-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 19;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    width: 11px;
+    height: 17px;
+    background: rgba(226,182,169,.5);
+    border-radius: 70% 30% 70% 30%;
+    animation: fallingPetal linear infinite;
+}
+
+@keyframes fallingPetal {
+
+    0% {
+        transform:
+            translateY(-40px)
+            translateX(0)
+            rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    50% {
+        transform:
+            translateY(55vh)
+            translateX(70px)
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-50px)
+            rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24,18,14,.10),
+            rgba(25,18,13,.76)
+        ),
+        url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2200&q=90")
+        center / cover;
+}
+
+/* cinematic glow */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(239,204,139,.18),
+            transparent 65%
+        );
+
+    top: 20%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    animation: goldenGlow 7s ease-in-out infinite alternate;
+
+}
+
+@keyframes goldenGlow {
+
+    from {
+        transform: translate(-50%, -50%) scale(.8);
+        opacity: .5;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+
+}
+
+/* shimmer */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 40%,
+            rgba(255,255,255,.08) 50%,
+            transparent 60%
+        );
+
+    transform: translateX(-100%);
+
+    animation: shimmer 8s infinite;
+
+}
+
+@keyframes shimmer {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    35%,100% {
+        transform: translateX(100%);
+    }
+
+}
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    padding:
+        60px
+        22px
+        75px;
+
+    animation:
+        heroEntrance
+        1.8s
+        ease
+        both;
+
+}
+
+@keyframes heroEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.eyebrow {
+
+    text-transform: uppercase;
+
+    letter-spacing: 6px;
+
+    font-size: 10px;
+
+    margin-bottom: 25px;
+
+    opacity: .9;
+
+}
+
+.hero-script {
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(
+        65px,
+        15vw,
+        150px
+    );
+
+    line-height: .75;
+
+    color: #f0d49c;
+
+    text-shadow:
+        0 0 25px rgba(240,212,156,.25);
+
+    animation:
+        scriptGlow
+        4s
+        ease-in-out
+        infinite alternate;
+
+}
+
+@keyframes scriptGlow {
+
+    from {
+        text-shadow:
+            0 0 10px rgba(240,212,156,.15);
+    }
+
+    to {
+        text-shadow:
+            0 0 35px rgba(240,212,156,.45);
+    }
+
+}
+
+.hero-names {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(48px,10vw,92px);
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    margin-top: 15px;
+
+}
+
+.hero-names span {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    color: #e8c88d;
+
+    font-size: .7em;
+
+}
+
+.hero-date {
+
+    margin-top: 25px;
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+}
+
+.hero-location {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    opacity: .8;
+
+}
+
+.scroll {
+
+    margin-top: 40px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    opacity: .75;
+
+}
+
+.scroll-line {
+
+    display: block;
+
+    width: 1px;
+
+    height: 45px;
+
+    background: white;
+
+    margin: 12px auto 0;
+
+    animation:
+        scrollLine
+        1.8s
+        infinite;
+
+}
+
+@keyframes scrollLine {
+
+    0%,100% {
+        transform: scaleY(.3);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+    }
+
+}
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.section {
+
+    padding:
+        110px
+        20px;
+
+    position: relative;
+
+}
+
+.container {
+
+    width:
+        min(1080px,100%);
+
+    margin:
+        auto;
+
+}
+
+.center {
+    text-align: center;
+}
+
+.kicker {
+
+    color:
+        var(--gold);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        5px;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        15px;
+
+}
+
+.title {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(43px,7vw,70px);
+
+    font-weight:
+        500;
+
+    line-height:
+        .95;
+
+    color:
+        #3b302a;
+
+}
+
+.script-title {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        58px;
+
+    color:
+        var(--rose);
+
+}
+
+.gold-line {
+
+    width:
+        55px;
+
+    height:
+        1px;
+
+    background:
+        var(--gold);
+
+    margin:
+        25px auto;
+
+}
+
+.lead {
+
+    max-width:
+        650px;
+
+    margin:
+        auto;
+
+    color:
+        #756b61;
+
+    line-height:
+        2;
+
+    font-size:
+        14px;
+
+}
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story {
+
+    background:
+        var(--ivory);
+
+}
+
+.story-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        70px;
+
+    align-items:
+        center;
+
+}
+
+.story-image {
+
+    min-height:
+        570px;
+
+    border-radius:
+        270px
+        270px
+        10px
+        10px;
+
+    background:
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=90")
+        center / cover;
+
+    position:
+        relative;
+
+    box-shadow:
+        20px 25px 60px rgba(62,43,31,.14);
+
+    transition:
+        transform
+        1s
+        ease;
+
+}
+
+.story-image:hover {
+
+    transform:
+        scale(1.02);
+
+}
+
+.story-image::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.65);
+
+    border-radius:
+        260px
+        260px
+        5px
+        5px;
+
+}
+
+.story-copy p {
+
+    color:
+        #756b61;
+
+    line-height:
+        2;
+
+    font-size:
+        14px;
+
+}
+
+.signature {
+
+    margin-top:
+        30px;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        44px;
+
+    color:
+        var(--rose);
+
+}
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.events {
+
+    background:
+        var(--cream);
+
+}
+
+.event-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        18px;
+
+    margin-top:
+        55px;
+
+}
+
+.event-card {
+
+    background:
+        rgba(255,253,249,.72);
+
+    border:
+        1px solid
+        rgba(164,124,61,.18);
+
+    padding:
+        42px 25px;
+
+    text-align:
+        center;
+
+    transition:
+        .45s;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+.event-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        -100%;
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    transition:
+        .7s;
+
+}
+
+.event-card:hover::before {
+
+    left:
+        100%;
+
+}
+
+.event-card:hover {
+
+    transform:
+        translateY(-9px);
+
+    box-shadow:
+        0 25px 55px
+        rgba(65,45,32,.1);
+
+}
+
+.event-number {
+
+    font:
+        italic 17px
+        "Cormorant Garamond";
+
+    color:
+        var(--gold);
+
+}
+
+.event-icon {
+
+    font-size:
+        28px;
+
+    color:
+        var(--gold);
+
+    margin:
+        17px 0;
+
+}
+
+.event-card h3 {
+
+    font:
+        500 35px
+        "Cormorant Garamond";
+
+}
+
+.event-date {
+
+    color:
+        var(--rose);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+    margin:
+        10px 0 16px;
+
+}
+
+.event-card p {
+
+    color:
+        #756b61;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.8;
+
+}
+
+/* =========================================================
+   CINEMATIC QUOTE
+========================================================= */
+
+.quote {
+
+    min-height:
+        520px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    text-align:
+        center;
+
+    color:
+        white;
+
+    background:
+
+        linear-gradient(
+            rgba(35,25,18,.58),
+            rgba(35,25,18,.72)
+        ),
+
+        url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=2200&q=90")
+        center / cover fixed;
+
+}
+
+.quote .title {
+
+    color:
+        white;
+
+}
+
+.quote-symbol {
+
+    font:
+        90px
+        "Cormorant Garamond";
+
+    color:
+        #e0bd7d;
+
+}
+
+.quote p {
+
+    max-width:
+        700px;
+
+    font:
+        italic 27px/1.55
+        "Cormorant Garamond";
+
+}
+
+.quote small {
+
+    display:
+        block;
+
+    margin-top:
+        20px;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        4px;
+
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown {
+
+    background:
+        var(--brown);
+
+    color:
+        white;
+
+    text-align:
+        center;
+
+}
+
+.countdown .title {
+
+    color:
+        white;
+
+}
+
+.timer {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        12px;
+
+    margin-top:
+        45px;
+
+}
+
+.timer-box {
+
+    width:
+        120px;
+
+    padding:
+        23px 8px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    background:
+        rgba(255,255,255,.04);
+
+    backdrop-filter:
+        blur(5px);
+
+}
+
+.timer-box strong {
+
+    display:
+        block;
+
+    font:
+        48px
+        "Cormorant Garamond";
+
+}
+
+.timer-box span {
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #cbbcb0;
+
+}
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue {
+
+    background:
+        var(--ivory);
+
+}
+
+.venue-card {
+
+    max-width:
+        850px;
+
+    margin:
+        50px auto 0;
+
+    padding:
+        55px 25px;
+
+    text-align:
+        center;
+
+    background:
+        #fffdf9;
+
+    border:
+        1px solid
+        rgba(164,124,61,.2);
+
+}
+
+.venue-name {
+
+    font:
+        43px
+        "Cormorant Garamond";
+
+}
+
+.address {
+
+    color:
+        #756b61;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+
+    margin:
+        12px 0 28px;
+
+}
+
+.button {
+
+    display:
+        inline-flex;
+
+    padding:
+        14px 28px;
+
+    border:
+        1px solid
+        var(--gold);
+
+    color:
+        #76562d;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        9px;
+
+    transition:
+        .3s;
+
+}
+
+.button:hover {
+
+    background:
+        var(--gold);
+
+    color:
+        white;
+
+}
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp {
+
+    background:
+        var(--cream);
+
+    text-align:
+        center;
+
+}
+
+.phone {
+
+    display:
+        block;
+
+    font:
+        37px
+        "Cormorant Garamond";
+
+    color:
+        var(--rose);
+
+    margin:
+        20px 0;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    background:
+        #2c231e;
+
+    color:
+        #eee8df;
+
+    text-align:
+        center;
+
+    padding:
+        85px 20px;
+
+}
+
+.footer-names {
+
+    font:
+        64px
+        "Great Vibes";
+
+    color:
+        #e0bd7d;
+
+}
+
+.footer-ornament {
+
+    margin:
+        25px;
+
+    color:
+        #b78b50;
+
+}
+
+.footer p {
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #b9aaa0;
+
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+.reveal {
+
+    opacity:
+        0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity
+        1s
+        ease,
+        transform
+        1s
+        ease;
+
+}
+
+.reveal.visible {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0);
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px) {
+
+    .story-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            45px;
+
+    }
+
+    .story-image {
+
+        min-height:
+            470px;
+
+    }
+
+    .event-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
 
 
-        <!-- Celebration Cards -->
-        <div class="celebration-cards">
+}
 
-            <!-- CARD 1 -->
-            <div class="celebration-card">
+@media(max-width:520px) {
 
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=90"
-                        alt="Ring Ceremony"
-                    >
-                </div>
+    .section {
 
-                <div class="card-content">
+        padding:
+            80px 18px;
 
-                    <div class="round-icon">
-                        <span>💍</span>
-                    </div>
+    }
 
-                    <h3>
-                        Ring Ceremony
-                    </h3>
+    .hero-date {
 
-                    <div class="card-ornament">
-                        <span></span>
-                        <b>♥</b>
-                        <span></span>
-                    </div>
+        letter-spacing:
+            3px;
 
-                    <p>
-                        The beautiful moment we exchange rings
-                        and promises to be together, always.
-                    </p>
+    }
 
-                </div>
+    .story-image {
 
-            </div>
+        min-height:
+            420px;
 
+    }
 
-            <!-- CARD 2 -->
-            <div class="celebration-card">
+    .timer-box {
 
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=90"
-                        alt="Delicious Food"
-                    >
-                </div>
+        width:
+            76px;
 
-                <div class="card-content">
+        padding:
+            17px 5px;
 
-                    <div class="round-icon">
-                        <span>♨</span>
-                    </div>
+    }
 
-                    <h3>
-                        Delicious Food
-                    </h3>
+    .timer-box strong {
 
-                    <div class="card-ornament">
-                        <span></span>
-                        <b>♥</b>
-                        <span></span>
-                    </div>
+        font-size:
+            34px;
 
-                    <p>
-                        A grand feast with a variety of cuisines
-                        to delight your taste buds.
-                    </p>
+    }
 
-                </div>
+    .timer-box span {
 
-            </div>
+        font-size:
+            7px;
 
+        letter-spacing:
+            1.5px;
 
-            <!-- CARD 3 -->
-            <div class="celebration-card">
+    }
 
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=90"
-                        alt="Dance and Music"
-                    >
-                </div>
+    .quote p {
 
-                <div class="card-content">
+        font-size:
+            23px;
 
-                    <div class="round-icon">
-                        <span>♫</span>
-                    </div>
+    }
 
-                    <h3>
-                        Dance & Music
-                    </h3>
+}
 
-                    <div class="card-ornament">
-                        <span></span>
-                        <b>♥</b>
-                        <span></span>
-                    </div>
+\n/* PREMIUM ENGAGEMENT CELEBRATION */
+.celebration-section{position:relative;overflow:hidden;padding:110px 30px;background:radial-gradient(circle at 15% 25%,rgba(230,183,168,.16),transparent 20%),radial-gradient(circle at 85% 20%,rgba(207,169,101,.12),transparent 22%),linear-gradient(135deg,#fffaf2,#f8f0e4);color:#382c26}
+.celebration-section::before{content:"";position:absolute;width:600px;height:600px;top:-250px;left:-250px;background:radial-gradient(circle,rgba(217,177,127,.10),transparent 70%);pointer-events:none}.celebration-section::after{content:"";position:absolute;width:500px;height:500px;bottom:-250px;right:-200px;background:radial-gradient(circle,rgba(225,179,168,.12),transparent 70%);pointer-events:none}
+.celebration-container{position:relative;z-index:5;width:min(1400px,100%);margin:auto}.celebration-heading{text-align:center;margin-bottom:65px}.celebration-kicker{margin-bottom:22px;font-size:11px;letter-spacing:7px;color:#b48a4c;font-weight:500}.celebration-heading h2{margin:0;font-family:"Cormorant Garamond",serif;font-size:clamp(48px,6vw,82px);line-height:1;font-weight:500;color:#382a24}.heading-ornament{display:flex;justify-content:center;align-items:center;gap:12px;margin:28px auto 25px}.heading-ornament span{width:92px;height:1px;background:#c8a064}.heading-ornament b{color:#c29a58;font-size:18px;font-weight:400}.celebration-heading p{margin:0 auto;max-width:720px;font-size:15px;line-height:2;color:#5e5149}
+.celebration-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}.celebration-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(250,241,226,.85));border:1px solid rgba(194,153,91,.55);border-radius:14px;box-shadow:0 20px 50px rgba(65,43,30,.08);transition:transform .5s ease,box-shadow .5s ease}.celebration-card:hover{transform:translateY(-12px);box-shadow:0 30px 70px rgba(65,43,30,.16)}.card-image{position:relative;height:320px;overflow:hidden}.card-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(45,30,20,.25));pointer-events:none}.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s cubic-bezier(.2,.7,.2,1)}.celebration-card:hover .card-image img{transform:scale(1.08)}
+.card-content{position:relative;text-align:center;padding:54px 30px 42px;min-height:205px}.round-icon{position:absolute;top:-31px;left:50%;transform:translateX(-50%);width:66px;height:66px;border-radius:50%;display:flex;justify-content:center;align-items:center;background:linear-gradient(145deg,#d9b56e,#b47f38);border:5px solid #fbf3e6;box-shadow:0 5px 18px rgba(124,83,33,.25)}.round-icon::before{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.7);border-radius:50%}.round-icon span{position:relative;z-index:2;color:white;font-size:25px;line-height:1}.card-content h3{margin:0;font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:500;color:#382c26}.card-ornament{display:flex;justify-content:center;align-items:center;gap:8px;margin:13px 0 17px}.card-ornament span{width:34px;height:1px;background:#caa66c}.card-ornament b{color:#c49a58;font-size:12px;font-weight:400}.card-content p{margin:0 auto;max-width:300px;font-size:13px;line-height:1.85;color:#695c53}.celebration-signature{text-align:center;margin-top:55px;font-family:"Great Vibes",cursive;font-size:42px;color:#b47e70}
+.floating-petals{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}.petal-float{position:absolute;opacity:.55;font-size:25px;filter:blur(.2px);animation:floatPetal linear infinite}.petal-1{left:4%;top:-20px;animation-duration:12s}.petal-2{left:18%;top:10%;animation-duration:16s;animation-delay:3s}.petal-3{right:7%;top:-30px;animation-duration:13s;animation-delay:2s}.petal-4{right:18%;top:20%;animation-duration:17s;animation-delay:5s}.petal-5{left:1%;bottom:5%;animation-duration:15s}.petal-6{right:2%;bottom:10%;animation-duration:12s;animation-delay:4s}@keyframes floatPetal{0%{transform:translateY(-80px) translateX(0) rotate(0deg);opacity:0}15%{opacity:.55}50%{transform:translateY(50vh) translateX(60px) rotate(180deg)}100%{transform:translateY(110vh) translateX(-40px) rotate(360deg);opacity:0}}
+.gold-particles{position:absolute;inset:0;pointer-events:none;z-index:2}.gold-particles span{position:absolute;color:#c49a58;font-size:13px;animation:particleFloat 4s ease-in-out infinite}.gold-particles span:nth-child(1){left:7%;top:23%}.gold-particles span:nth-child(2){left:16%;top:35%;animation-delay:1s}.gold-particles span:nth-child(3){left:28%;top:18%;animation-delay:2s}.gold-particles span:nth-child(4){right:8%;top:30%;animation-delay:1.5s}.gold-particles span:nth-child(5){right:18%;top:14%;animation-delay:.5s}.gold-particles span:nth-child(6){right:30%;top:38%;animation-delay:2.5s}.gold-particles span:nth-child(7){left:4%;bottom:22%;animation-delay:1.2s}.gold-particles span:nth-child(8){right:5%;bottom:20%;animation-delay:2.2s}
+@keyframes particleFloat{0%,100%{transform:translateY(0) scale(.8);opacity:.25}50%{transform:translateY(-12px) scale(1.3);opacity:.9}}
+@media(max-width:800px){.desktop-only{display:none}.celebration-section{padding:80px 18px}.celebration-cards{grid-template-columns:1fr;max-width:520px;margin:auto}.card-image{height:280px}.celebration-heading{margin-bottom:45px}.celebration-heading h2{font-size:52px}.celebration-heading p{font-size:14px}}@media(max-width:520px){.celebration-section{padding:70px 14px}.celebration-heading h2{font-size:44px}.celebration-kicker{letter-spacing:5px;font-size:9px}.heading-ornament span{width:55px}.celebration-heading p{line-height:1.8}.card-image{height:240px}.card-content{padding:52px 22px 35px}.card-content h3{font-size:31px}.celebration-signature{font-size:36px}}
 
-                    <p>
-                        Groove to the beats, enjoy lively music
-                        and make unforgettable memories.
-                    </p>
+</style>
+</head>
 
-                </div>
+<body>
 
-            </div>
+<!-- ======================================================
+     LOADER
+====================================================== -->
 
-        </div>
+<div class="loader" id="loader">
 
-        <div class="celebration-signature">
+    <div class="loader-content">
+
+        <div class="loader-ring"></div>
+
+        <div class="loader-name">
             Mrinal & Rimpa
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     FLOATING PARTICLES
+====================================================== -->
+
+<div class="particle-container">
+
+    <span class="particle" style="left:5%;animation-duration:12s;animation-delay:1s"></span>
+    <span class="particle" style="left:15%;animation-duration:15s;animation-delay:4s"></span>
+    <span class="particle" style="left:28%;animation-duration:11s;animation-delay:2s"></span>
+    <span class="particle" style="left:42%;animation-duration:16s;animation-delay:5s"></span>
+    <span class="particle" style="left:55%;animation-duration:13s;animation-delay:1s"></span>
+    <span class="particle" style="left:67%;animation-duration:17s;animation-delay:7s"></span>
+    <span class="particle" style="left:79%;animation-duration:12s;animation-delay:3s"></span>
+    <span class="particle" style="left:92%;animation-duration:15s;animation-delay:6s"></span>
+
+</div>
+
+
+<!-- ======================================================
+     PETALS
+====================================================== -->
+
+<div class="petal-container">
+
+    <span class="petal" style="left:7%;animation-duration:11s"></span>
+    <span class="petal" style="left:19%;animation-duration:14s;animation-delay:3s"></span>
+    <span class="petal" style="left:34%;animation-duration:12s;animation-delay:5s"></span>
+    <span class="petal" style="left:51%;animation-duration:15s;animation-delay:2s"></span>
+    <span class="petal" style="left:68%;animation-duration:11s;animation-delay:6s"></span>
+    <span class="petal" style="left:84%;animation-duration:14s;animation-delay:1s"></span>
+
+</div>
+
+
+<!-- ======================================================
+     MUSIC
+====================================================== -->
+
+<audio
+    id="music"
+    loop
+    preload="none">
+
+    <!--
+        IMPORTANT:
+        Keep your MP3 beside this HTML file.
+    -->
+
+    <source
+        src="Save The Date for Wedding Ceremony Invitation Video #newsong #song #music #trendingsong.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+<button
+    class="music-button"
+    id="musicButton">
+
+    ♪
+
+</button>
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            Together with their families
+        </div>
+
+        <div class="hero-script">
+            Engagement
+        </div>
+
+        <div class="hero-names">
+            Mrinal
+            <span>&amp;</span>
+            Rimpa
+        </div>
+
+        <div class="hero-date">
+            15 · NOVEMBER · 2026
+        </div>
+
+        <div class="hero-location">
+            NEW DELHI · INDIA
+        </div>
+
+        <div class="scroll">
+
+            Discover our story
+
+            <span class="scroll-line"></span>
+
         </div>
 
     </div>
@@ -176,779 +1525,659 @@
 </section>
 
 
-<style>
+<!-- ======================================================
+     STORY
+====================================================== -->
 
-/* =====================================
-   CELEBRATION SECTION
-===================================== */
+<section class="section story">
 
-.celebration-section {
-    position: relative;
-    overflow: hidden;
+    <div class="container story-grid reveal">
 
-    padding: 110px 30px;
+        <div class="story-image"></div>
 
-    background:
-        radial-gradient(
-            circle at 15% 25%,
-            rgba(230, 183, 168, 0.16),
-            transparent 20%
-        ),
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(207, 169, 101, 0.12),
-            transparent 22%
-        ),
-        linear-gradient(
-            135deg,
-            #fffaf2,
-            #f8f0e4
+        <div class="story-copy">
+
+            <div class="kicker">
+                Our beginning
+            </div>
+
+            <div class="script-title">
+                A little story
+            </div>
+
+            <div class="title">
+                Two souls,<br>
+                one journey.
+            </div>
+
+            <div class="gold-line"
+                 style="margin-left:0">
+            </div>
+
+            <p>
+
+                Some moments become memories,
+                and some memories become the
+                beginning of something beautiful.
+
+                With the love and blessings of
+                our families, we are delighted
+                to invite you to celebrate the
+                beginning of our journey together.
+
+            </p>
+
+            <div class="signature">
+                Mrinal & Rimpa
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EVENTS
+====================================================== -->
+
+<section class="section events">
+
+    <div class="container">
+
+        <div class="center reveal">
+
+            <div class="kicker">
+                Save the date
+            </div>
+
+            <div class="title">
+                The Celebration
+            </div>
+
+            <div class="gold-line"></div>
+
+            <p class="lead">
+                A beautiful evening filled with
+                love, laughter, family and blessings.
+            </p>
+
+        </div>
+
+
+        <div class="event-grid">
+
+            <div class="event-card reveal">
+
+                <div class="event-number">
+                    01
+                </div>
+
+                <div class="event-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Welcome
+                </h3>
+
+                <div class="event-date">
+                    SUNDAY · 15 NOVEMBER
+                </div>
+
+                <p>
+                    Guests are warmly welcomed
+                    as we begin this special
+                    evening together.
+                </p>
+
+            </div>
+
+
+            <div class="event-card reveal">
+
+                <div class="event-number">
+                    02
+                </div>
+
+                <div class="event-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Engagement
+                </h3>
+
+                <div class="event-date">
+                    7:00 PM ONWARDS
+                </div>
+
+                <p>
+                    The beautiful moment when
+                    Mrinal and Rimpa exchange
+                    rings and promises.
+                </p>
+
+            </div>
+
+
+            <div class="event-card reveal">
+
+                <div class="event-number">
+                    03
+                </div>
+
+                <div class="event-icon">
+                    ❦
+                </div>
+
+                <h3>
+                    Dinner
+                </h3>
+
+                <div class="event-date">
+                    8:30 PM ONWARDS
+                </div>
+
+                <p>
+                    Join us for delicious food,
+                    conversations and celebration.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     QUOTE
+====================================================== -->
+
+<section class="section quote">
+
+    <div class="container reveal">
+
+        <div class="quote-symbol">
+            “
+        </div>
+
+        <p>
+            Love is not about finding
+            the perfect person.
+            It is about creating
+            a perfect moment together.
+        </p>
+
+        <small>
+            MRINAL & RIMPA
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ENGAGEMENT CELEBRATION
+====================================================== -->
+<section class="celebration-section">
+<div class="floating-petals"><span class="petal-float petal-1">🌸</span><span class="petal-float petal-2">🌸</span><span class="petal-float petal-3">🌸</span><span class="petal-float petal-4">🌸</span><span class="petal-float petal-5">🌸</span><span class="petal-float petal-6">🌸</span></div>
+<div class="gold-particles"><span>✦</span><span>•</span><span>✦</span><span>•</span><span>✦</span><span>•</span><span>✦</span><span>•</span></div>
+<div class="celebration-container">
+<div class="celebration-heading reveal"><div class="celebration-kicker">CELEBRATIONS</div><h2>Our Engagement Celebration</h2><div class="heading-ornament"><span></span><b>♥</b><span></span></div><p>An evening filled with love, laughter and togetherness.<br>Join us as we begin our forever with a beautiful ring ceremony,<br class="desktop-only"> delicious food, energetic dance and wonderful music.</p></div>
+<div class="celebration-cards">
+<div class="celebration-card reveal"><div class="card-image"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=90" alt="Ring Ceremony"></div><div class="card-content"><div class="round-icon"><span>💍</span></div><h3>Ring Ceremony</h3><div class="card-ornament"><span></span><b>♥</b><span></span></div><p>The beautiful moment we exchange rings and promises to be together, always.</p></div></div>
+<div class="celebration-card reveal"><div class="card-image"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=90" alt="Delicious Food"></div><div class="card-content"><div class="round-icon"><span>♨</span></div><h3>Delicious Food</h3><div class="card-ornament"><span></span><b>♥</b><span></span></div><p>A grand feast with a variety of cuisines to delight your taste buds.</p></div></div>
+<div class="celebration-card reveal"><div class="card-image"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=90" alt="Dance and Music"></div><div class="card-content"><div class="round-icon"><span>♫</span></div><h3>Dance &amp; Music</h3><div class="card-ornament"><span></span><b>♥</b><span></span></div><p>Groove to the beats, enjoy lively music and make unforgettable memories.</p></div></div>
+</div><div class="celebration-signature reveal">Mrinal &amp; Rimpa</div></div>
+</section>
+
+<!-- ======================================================
+     COUNTDOWN
+====================================================== -->
+
+<section class="section countdown">
+
+    <div class="container reveal">
+
+        <div class="kicker"
+             style="color:#d9b97f">
+
+            Until we celebrate
+
+        </div>
+
+        <div class="title">
+            The countdown begins
+        </div>
+
+        <p
+            style="
+            margin-top:12px;
+            color:#cbbcb0;
+            font-size:13px;
+            ">
+
+            We cannot wait to have you with us.
+
+        </p>
+
+
+        <div class="timer">
+
+            <div class="timer-box">
+
+                <strong id="days">
+                    00
+                </strong>
+
+                <span>
+                    DAYS
+                </span>
+
+            </div>
+
+
+            <div class="timer-box">
+
+                <strong id="hours">
+                    00
+                </strong>
+
+                <span>
+                    HOURS
+                </span>
+
+            </div>
+
+
+            <div class="timer-box">
+
+                <strong id="minutes">
+                    00
+                </strong>
+
+                <span>
+                    MINUTES
+                </span>
+
+            </div>
+
+
+            <div class="timer-box">
+
+                <strong id="seconds">
+                    00
+                </strong>
+
+                <span>
+                    SECONDS
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     VENUE
+====================================================== -->
+
+<section class="section venue">
+
+    <div class="container center reveal">
+
+        <div class="kicker">
+            Where we meet
+        </div>
+
+        <div class="title">
+            The Venue
+        </div>
+
+        <div class="gold-line"></div>
+
+
+        <div class="venue-card">
+
+            <div class="venue-name">
+                Royal Orchid Banquet
+            </div>
+
+            <div class="address">
+
+                Plot 21, Celebration Avenue<br>
+
+                Dwarka, New Delhi — 110075<br>
+
+                India
+
+            </div>
+
+
+            <a
+                class="button"
+                target="_blank"
+                href="https://www.google.com/maps/search/?api=1&query=Royal+Orchid+Banquet+Dwarka+New+Delhi">
+
+                Open in Google Maps
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     RSVP
+====================================================== -->
+
+<section class="section rsvp">
+
+    <div class="container reveal">
+
+        <div class="kicker">
+            We would love to have you
+        </div>
+
+        <div class="title">
+            Be our guest
+        </div>
+
+        <div class="gold-line"></div>
+
+        <p class="lead">
+
+            Your presence and blessings
+            mean the world to us.
+
+            For any questions or assistance,
+            please feel free to contact us.
+
+        </p>
+
+
+        <a
+            class="phone"
+            href="tel:+919876543210">
+
+            +91 98765 43210
+
+        </a>
+
+
+        <a
+            class="button"
+            href="https://wa.me/919876543210">
+
+            RSVP on WhatsApp
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-names">
+        Mrinal & Rimpa
+    </div>
+
+    <div class="footer-ornament">
+        ✦ ❦ ✦
+    </div>
+
+    <p>
+        WITH LOVE · WITH FAMILY · WITH BLESSINGS
+    </p>
+
+</footer>
+
+
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+/* -------------------------------------------------------
+   LOADER
+------------------------------------------------------- */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document
+            .getElementById("loader")
+            .classList
+            .add("hide");
+
+    }, 800);
+
+});
+
+
+/* -------------------------------------------------------
+   MUSIC
+------------------------------------------------------- */
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+musicButton.addEventListener("click", async () => {
+
+    if (music.paused) {
+
+        try {
+
+            await music.play();
+
+            musicButton.innerHTML = "♫";
+
+            musicButton.classList
+                .add("music-playing");
+
+        }
+
+        catch(error) {
+
+            alert(
+                "Please make sure the MP3 file is beside this HTML file."
+            );
+
+        }
+
+    }
+
+    else {
+
+        music.pause();
+
+        musicButton.innerHTML = "♪";
+
+        musicButton.classList
+            .remove("music-playing");
+
+    }
+
+});
+
+
+/* -------------------------------------------------------
+   COUNTDOWN
+------------------------------------------------------- */
+
+const engagementDate =
+    new Date(
+        "November 15, 2026 19:00:00"
+    ).getTime();
+
+
+function updateCountdown() {
+
+    const now =
+        Date.now();
+
+    const difference =
+        engagementDate - now;
+
+
+    if (difference <= 0) {
+
+        document
+            .querySelectorAll(".timer-box strong")
+            .forEach(el => el.textContent = "00");
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
         );
 
-    color: #382c26;
+
+    const hours =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60)
+        ) % 24;
+
+
+    const minutes =
+        Math.floor(
+            difference /
+            (1000 * 60)
+        ) % 60;
+
+
+    const seconds =
+        Math.floor(
+            difference /
+            1000
+        ) % 60;
+
+
+    document.getElementById("days")
+        .textContent =
+        String(days).padStart(2,"0");
+
+
+    document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2,"0");
+
+
+    document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2,"0");
+
+
+    document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2,"0");
+
 }
 
 
-/* Soft decorative glow */
+updateCountdown();
 
-.celebration-section::before {
-    content: "";
-    position: absolute;
+setInterval(
+    updateCountdown,
+    1000
+);
 
-    width: 600px;
-    height: 600px;
 
-    top: -250px;
-    left: -250px;
+/* -------------------------------------------------------
+   SCROLL REVEAL
+------------------------------------------------------- */
 
-    background: radial-gradient(
-        circle,
-        rgba(217, 177, 127, 0.10),
-        transparent 70%
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (
+                    entry.isIntersecting
+                ) {
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .12
+        }
     );
 
-    pointer-events: none;
-}
 
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
 
-.celebration-section::after {
-    content: "";
+        revealObserver
+            .observe(element);
 
-    position: absolute;
+    });
 
-    width: 500px;
-    height: 500px;
 
-    bottom: -250px;
-    right: -200px;
+/* -------------------------------------------------------
+   HERO PARALLAX
+------------------------------------------------------- */
 
-    background: radial-gradient(
-        circle,
-        rgba(225, 179, 168, 0.12),
-        transparent 70%
-    );
+window.addEventListener(
+    "scroll",
+    () => {
 
-    pointer-events: none;
-}
+        const hero =
+            document.querySelector(".hero");
 
+        const scroll =
+            window.scrollY;
 
-/* =====================================
-   CONTAINER
-===================================== */
+        if (scroll < window.innerHeight) {
 
-.celebration-container {
-    position: relative;
-    z-index: 5;
+            hero.style.backgroundPosition =
+                `center ${50 + scroll * 0.025}%`;
 
-    width: min(1400px, 100%);
-    margin: auto;
-}
+        }
 
-
-/* =====================================
-   HEADING
-===================================== */
-
-.celebration-heading {
-    text-align: center;
-    margin-bottom: 65px;
-}
-
-
-.celebration-kicker {
-    margin-bottom: 22px;
-
-    font-family: "DM Sans", sans-serif;
-
-    font-size: 11px;
-
-    letter-spacing: 7px;
-
-    color: #b48a4c;
-
-    font-weight: 500;
-}
-
-
-.celebration-heading h2 {
-    margin: 0;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: clamp(
-        48px,
-        6vw,
-        82px
-    );
-
-    line-height: 1;
-
-    font-weight: 500;
-
-    color: #382a24;
-}
-
-
-.heading-ornament {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin: 28px auto 25px;
-}
-
-
-.heading-ornament span {
-    width: 92px;
-
-    height: 1px;
-
-    background: #c8a064;
-}
-
-
-.heading-ornament b {
-    color: #c29a58;
-
-    font-size: 18px;
-
-    font-weight: 400;
-}
-
-
-.celebration-heading p {
-    margin: 0 auto;
-
-    max-width: 720px;
-
-    font-family: "DM Sans", sans-serif;
-
-    font-size: 15px;
-
-    line-height: 2;
-
-    color: #5e5149;
-
-    font-weight: 400;
-}
-
-
-/* =====================================
-   CARDS
-===================================== */
-
-.celebration-cards {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 28px;
-
-    align-items: stretch;
-}
-
-
-/* =====================================
-   CARD
-===================================== */
-
-.celebration-card {
-
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.8),
-            rgba(250,241,226,.85)
-        );
-
-    border: 1px solid rgba(
-        194,
-        153,
-        91,
-        .55
-    );
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 20px 50px
-        rgba(65, 43, 30, .08);
-
-    transition:
-        transform .5s ease,
-        box-shadow .5s ease;
-}
-
-
-.celebration-card:hover {
-
-    transform:
-        translateY(-12px);
-
-    box-shadow:
-        0 30px 70px
-        rgba(65, 43, 30, .16);
-}
-
-
-/* =====================================
-   IMAGE
-===================================== */
-
-.card-image {
-
-    position: relative;
-
-    height: 320px;
-
-    overflow: hidden;
-}
-
-
-.card-image::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 65%,
-            rgba(45,30,20,.25)
-        );
-
-    pointer-events: none;
-}
-
-
-.card-image img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition:
-        transform 1s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-
-.celebration-card:hover
-.card-image img {
-
-    transform: scale(1.08);
-}
-
-
-/* =====================================
-   CARD CONTENT
-===================================== */
-
-.card-content {
-
-    position: relative;
-
-    text-align: center;
-
-    padding: 54px 30px 42px;
-
-    min-height: 205px;
-}
-
-
-/* =====================================
-   ROUND ICON
-===================================== */
-
-.round-icon {
-
-    position: absolute;
-
-    top: -31px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    width: 66px;
-
-    height: 66px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d9b56e,
-            #b47f38
-        );
-
-    border:
-        5px solid #fbf3e6;
-
-    box-shadow:
-        0 5px 18px
-        rgba(124, 83, 33, .25);
-}
-
-
-.round-icon::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 6px;
-
-    border: 1px solid
-        rgba(255,255,255,.7);
-
-    border-radius: 50%;
-}
-
-
-.round-icon span {
-
-    position: relative;
-
-    z-index: 2;
-
-    color: white;
-
-    font-size: 25px;
-
-    line-height: 1;
-}
-
-
-/* =====================================
-   CARD TITLE
-===================================== */
-
-.card-content h3 {
-
-    margin: 0;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 34px;
-
-    font-weight: 500;
-
-    color: #382c26;
-}
-
-
-/* =====================================
-   CARD ORNAMENT
-===================================== */
-
-.card-ornament {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 8px;
-
-    margin: 13px 0 17px;
-}
-
-
-.card-ornament span {
-
-    width: 34px;
-
-    height: 1px;
-
-    background: #caa66c;
-}
-
-
-.card-ornament b {
-
-    color: #c49a58;
-
-    font-size: 12px;
-
-    font-weight: 400;
-}
-
-
-.card-content p {
-
-    margin: 0 auto;
-
-    max-width: 300px;
-
-    font-size: 13px;
-
-    line-height: 1.85;
-
-    color: #695c53;
-}
-
-
-/* =====================================
-   SIGNATURE
-===================================== */
-
-.celebration-signature {
-
-    text-align: center;
-
-    margin-top: 55px;
-
-    font-family:
-        "Great Vibes",
-        cursive;
-
-    font-size: 42px;
-
-    color: #b47e70;
-}
-
-
-/* =====================================
-   FLOATING PETALS
-===================================== */
-
-.floating-petals {
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    overflow: hidden;
-
-    z-index: 1;
-}
-
-
-.petal {
-
-    position: absolute;
-
-    opacity: .55;
-
-    font-size: 25px;
-
-    filter:
-        blur(.2px);
-
-    animation:
-        floatPetal
-        linear infinite;
-}
-
-
-.petal-1 {
-    left: 4%;
-    top: -20px;
-    animation-duration: 12s;
-}
-
-.petal-2 {
-    left: 18%;
-    top: 10%;
-    animation-duration: 16s;
-    animation-delay: 3s;
-}
-
-.petal-3 {
-    right: 7%;
-    top: -30px;
-    animation-duration: 13s;
-    animation-delay: 2s;
-}
-
-.petal-4 {
-    right: 18%;
-    top: 20%;
-    animation-duration: 17s;
-    animation-delay: 5s;
-}
-
-.petal-5 {
-    left: 1%;
-    bottom: 5%;
-    animation-duration: 15s;
-}
-
-.petal-6 {
-    right: 2%;
-    bottom: 10%;
-    animation-duration: 12s;
-    animation-delay: 4s;
-}
-
-
-@keyframes floatPetal {
-
-    0% {
-        transform:
-            translateY(-80px)
-            translateX(0)
-            rotate(0deg);
-
-        opacity: 0;
     }
+);
 
-    15% {
-        opacity: .55;
-    }
+</script>
 
-    50% {
-        transform:
-            translateY(50vh)
-            translateX(60px)
-            rotate(180deg);
-    }
-
-    100% {
-        transform:
-            translateY(110vh)
-            translateX(-40px)
-            rotate(360deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* =====================================
-   GOLD PARTICLES
-===================================== */
-
-.gold-particles {
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 2;
-}
-
-
-.gold-particles span {
-
-    position: absolute;
-
-    color: #c49a58;
-
-    font-size: 13px;
-
-    animation:
-        particleFloat
-        4s ease-in-out
-        infinite;
-}
-
-
-.gold-particles span:nth-child(1) {
-    left: 7%;
-    top: 23%;
-}
-
-.gold-particles span:nth-child(2) {
-    left: 16%;
-    top: 35%;
-    animation-delay: 1s;
-}
-
-.gold-particles span:nth-child(3) {
-    left: 28%;
-    top: 18%;
-    animation-delay: 2s;
-}
-
-.gold-particles span:nth-child(4) {
-    right: 8%;
-    top: 30%;
-    animation-delay: 1.5s;
-}
-
-.gold-particles span:nth-child(5) {
-    right: 18%;
-    top: 14%;
-    animation-delay: .5s;
-}
-
-.gold-particles span:nth-child(6) {
-    right: 30%;
-    top: 38%;
-    animation-delay: 2.5s;
-}
-
-.gold-particles span:nth-child(7) {
-    left: 4%;
-    bottom: 22%;
-    animation-delay: 1.2s;
-}
-
-.gold-particles span:nth-child(8) {
-    right: 5%;
-    bottom: 20%;
-    animation-delay: 2.2s;
-}
-
-
-@keyframes particleFloat {
-
-    0%,100% {
-        transform:
-            translateY(0)
-            scale(.8);
-
-        opacity: .25;
-    }
-
-    50% {
-        transform:
-            translateY(-12px)
-            scale(1.3);
-
-        opacity: .9;
-    }
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 900px) {
-
-    .celebration-section {
-        padding:
-            80px 18px;
-    }
-
-    .celebration-cards {
-
-        grid-template-columns:
-            1fr;
-
-        max-width: 520px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .card-image {
-        height: 280px;
-    }
-
-    .celebration-heading {
-        margin-bottom: 45px;
-    }
-
-    .celebration-heading h2 {
-        font-size: 52px;
-    }
-
-    .celebration-heading p {
-        font-size: 14px;
-    }
-
-    .desktop-only {
-        display: none;
-    }
-}
-
-
-@media (max-width: 500px) {
-
-    .celebration-section {
-        padding:
-            70px 14px;
-    }
-
-    .celebration-heading h2 {
-        font-size: 44px;
-    }
-
-    .celebration-kicker {
-        letter-spacing: 5px;
-        font-size: 9px;
-    }
-
-    .heading-ornament span {
-        width: 55px;
-    }
-
-    .celebration-heading p {
-        line-height: 1.8;
-    }
-
-    .card-image {
-        height: 240px;
-    }
-
-    .card-content {
-        padding:
-            52px 22px 35px;
-    }
-
-    .card-content h3 {
-        font-size: 31px;
-    }
-
-    .celebration-signature {
-        font-size: 36px;
-    }
-}
-
-</style>
+</body>
+</html>
