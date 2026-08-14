@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Mrinal & Rimpa | Engagement</title>
 
@@ -1395,6 +1395,97 @@ a {
 @keyframes particleFloat{0%,100%{transform:translateY(0) scale(.8);opacity:.25}50%{transform:translateY(-12px) scale(1.3);opacity:.9}}
 @media(max-width:800px){.desktop-only{display:none}.celebration-section{padding:80px 18px}.celebration-cards{grid-template-columns:1fr;max-width:520px;margin:auto}.card-image{height:280px}.celebration-heading{margin-bottom:45px}.celebration-heading h2{font-size:52px}.celebration-heading p{font-size:14px}}@media(max-width:520px){.celebration-section{padding:70px 14px}.celebration-heading h2{font-size:44px}.celebration-kicker{letter-spacing:5px;font-size:9px}.heading-ornament span{width:55px}.celebration-heading p{line-height:1.8}.card-image{height:240px}.card-content{padding:52px 22px 35px}.card-content h3{font-size:31px}.celebration-signature{font-size:36px}}
 
+
+/* ===== FINAL MOBILE PHONE RESPONSIVE OVERRIDES ===== */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+*,*::before,*::after{max-width:100%}
+img{max-width:100%;height:auto}
+button,a{-webkit-tap-highlight-color:transparent}
+
+@media (max-width:767px){
+  .hero{min-height:100svh;min-height:100dvh;background-attachment:scroll;background-position:center!important}
+  .hero-content{width:100%;padding:72px 16px 50px}
+  .eyebrow{font-size:8px;letter-spacing:3px;margin-bottom:18px}
+  .hero-script{font-size:clamp(50px,18vw,80px);line-height:.82}
+  .hero-names{font-size:clamp(39px,12.8vw,64px);line-height:1;letter-spacing:0;margin-top:15px;white-space:nowrap}
+  .hero-date{font-size:8px;letter-spacing:2.2px;margin-top:21px;white-space:nowrap}
+  .hero-location{font-size:8px;letter-spacing:1.8px}
+  .music-button{width:44px;height:44px;right:12px;top:max(12px,env(safe-area-inset-top));z-index:1000}
+
+  .section{padding:72px 16px}
+  .title{font-size:clamp(39px,12vw,58px);line-height:.98}
+  .script-title{font-size:48px}
+  .kicker{font-size:8px;letter-spacing:4px}
+  .lead{font-size:13px;line-height:1.85}
+
+  .story-grid{grid-template-columns:1fr;gap:38px;width:100%}
+  .story-image{width:min(100%,390px);height:430px;min-height:430px;margin:0 auto;border-radius:210px 210px 12px 12px}
+  .story-copy{text-align:center;width:100%}
+  .story-copy .gold-line{margin-left:auto!important;margin-right:auto}
+  .story-copy p{font-size:13px;line-height:1.9}
+
+  .celebration-section{padding:72px 14px;width:100%}
+  .celebration-heading{width:100%;margin-bottom:42px}
+  .celebration-kicker{font-size:8px;letter-spacing:4px;margin-bottom:17px}
+  .celebration-heading h2{font-size:clamp(38px,11.8vw,54px);line-height:.98;padding:0 4px}
+  .heading-ornament{gap:8px;margin:21px auto 20px}
+  .heading-ornament span{width:48px}
+  .celebration-heading p{font-size:13px;line-height:1.8;padding:0 5px}
+  .desktop-only{display:none}
+  .celebration-cards{grid-template-columns:1fr;gap:22px;width:100%;max-width:520px;margin:auto}
+  .celebration-card{width:100%;border-radius:12px}
+  .card-image{height:clamp(205px,62vw,280px)}
+  .card-content{min-height:0;padding:51px 19px 32px}
+  .card-content h3{font-size:30px;line-height:1}
+  .card-content p{font-size:12px;line-height:1.8;max-width:310px}
+  .round-icon{width:62px;height:62px;top:-30px}
+  .celebration-signature{font-size:37px;margin-top:40px}
+
+  .event-grid{grid-template-columns:1fr;gap:14px;margin-top:38px}
+  .event-card{padding:34px 20px;width:100%}
+  .event-card h3{font-size:32px}
+
+  .quote{min-height:430px;padding:70px 18px;background-attachment:scroll}
+  .quote-symbol{font-size:72px}
+  .quote p{font-size:22px;line-height:1.5;width:100%}
+  .quote small{font-size:7px;letter-spacing:3px}
+
+  .countdown{padding-left:10px;padding-right:10px}
+  .timer{width:100%;display:flex;flex-wrap:nowrap;gap:5px;margin-top:32px}
+  .timer-box{flex:1 1 0;width:auto;min-width:0;padding:14px 2px}
+  .timer-box strong{font-size:clamp(26px,8.5vw,37px);line-height:1}
+  .timer-box span{font-size:5.8px;letter-spacing:.8px;white-space:nowrap}
+
+  .venue-card{width:100%;padding:40px 17px;margin-top:38px}
+  .venue-name{font-size:34px;line-height:1.05}
+  .address{font-size:12px;line-height:1.8}
+  .button{max-width:100%;padding:13px 19px;font-size:8px;letter-spacing:1.5px;text-align:center;justify-content:center}
+  .phone{font-size:29px;word-break:break-word}
+  .footer{padding:64px 15px}
+  .footer-names{font-size:clamp(45px,14.5vw,64px);line-height:1}
+  .footer p{font-size:7px;letter-spacing:2.2px;line-height:1.8}
+  .floating-petals .petal-float{font-size:17px}
+  .gold-particles span{font-size:9px}
+}
+
+@media (max-width:380px){
+  .hero-content{padding-left:12px;padding-right:12px}
+  .hero-script{font-size:49px}
+  .hero-names{font-size:38px}
+  .hero-date{font-size:7px;letter-spacing:1.5px}
+  .hero-location{font-size:7px}
+  .celebration-heading h2{font-size:36px}
+  .celebration-heading p{font-size:12px}
+  .card-image{height:205px}
+  .card-content{padding-left:16px;padding-right:16px}
+  .timer{gap:3px}
+  .timer-box{padding:12px 1px}
+  .timer-box strong{font-size:25px}
+  .timer-box span{font-size:5px;letter-spacing:.5px}
+  .venue-name{font-size:30px}
+  .phone{font-size:26px}
+}
+
 </style>
 </head>
 
@@ -1556,13 +1647,14 @@ a {
 
             <p>
 
-               कुछ लम्हे यादों में बस जाते हैं,
-               और कुछ यादें ज़िंदगी की
-               सबसे खूबसूरत शुरुआत बन जाती हैं।
+                Some moments become memories,
+                and some memories become the
+                beginning of something beautiful.
 
-               परिवार के प्रेम और आशीर्वाद से,
-               हम अपने साथ के इस नए सफ़र की शुरुआत पर
-               आपकी मौजूदगी और शुभाशीष के आकांक्षी हैं। 🌸
+                With the love and blessings of
+                our families, we are delighted
+                to invite you to celebrate the
+                beginning of our journey together.
 
             </p>
 
@@ -1706,9 +1798,10 @@ a {
         </div>
 
         <p>
-            प्यार किसी मुकम्मल इंसान को पाने का नाम नहीं,
-            बल्कि दो दिलों के साथ मिलकर,
-            हर पल को खूबसूरत बनाने का नाम है।
+            Love is not about finding
+            the perfect person.
+            It is about creating
+            a perfect moment together.
         </p>
 
         <small>
