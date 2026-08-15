@@ -672,7 +672,7 @@ a {
         10px;
 
     background:
-        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=90")
+        url("mrinal_rimpa_couple_story.jpeg")
         center / cover;
 
     position:
@@ -1968,6 +1968,31 @@ body {
     }
 }
 </style>
+<style>
+/* ===== DEFINITIVE FOOTER END FIX ===== */
+html, body {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer {
+  display: block !important;
+  position: relative !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding-bottom: 52px !important;
+  box-sizing: border-box !important;
+}
+
+/* The footer is the true end of the document. */
+body > script { display: none !important; }
+</style>
 </head>
 
 <body>
@@ -2795,5 +2820,33 @@ window.addEventListener(
 })();
 </script>
 
+<script>
+(function () {
+  function trimDocumentAfterFooter() {
+    var footer = document.querySelector('.footer');
+    if (!footer) return;
+
+    /* Clear any inherited viewport sizing first. */
+    document.documentElement.style.minHeight = '0';
+    document.body.style.minHeight = '0';
+
+    /* Measure the real bottom of the last visible element. */
+    var footerBottom = Math.ceil(footer.getBoundingClientRect().bottom + window.scrollY);
+
+    /* Make the document end exactly where the footer ends. */
+    document.documentElement.style.height = footerBottom + 'px';
+    document.body.style.height = footerBottom + 'px';
+    document.body.style.overflowX = 'hidden';
+  }
+
+  window.addEventListener('load', function () {
+    trimDocumentAfterFooter();
+    setTimeout(trimDocumentAfterFooter, 100);
+    setTimeout(trimDocumentAfterFooter, 500);
+  });
+
+  window.addEventListener('resize', trimDocumentAfterFooter);
+})();
+</script>
 </body>
 </html>
