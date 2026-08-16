@@ -1967,6 +1967,114 @@ body {
         padding-bottom: 0 !important;
     }
 }
+
+/* =========================================================
+   WELCOME MUSIC POPUP
+========================================================= */
+.music-welcome-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(35, 27, 23, .62);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .45s ease, visibility .45s ease;
+}
+
+.music-welcome-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.music-welcome-card {
+    width: min(420px, 100%);
+    box-sizing: border-box;
+    padding: 42px 30px 34px;
+    text-align: center;
+    border: 1px solid rgba(224, 189, 125, .55);
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffaf2, #f6eee3);
+    box-shadow: 0 30px 90px rgba(0,0,0,.28);
+    transform: translateY(18px) scale(.97);
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+}
+
+.music-welcome-overlay.show .music-welcome-card {
+    transform: translateY(0) scale(1);
+}
+
+.music-welcome-ornament {
+    color: #c49a58;
+    font-size: 22px;
+    letter-spacing: 8px;
+    margin-bottom: 18px;
+}
+
+.music-welcome-card h2 {
+    margin: 0 0 12px;
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(42px, 10vw, 58px);
+    font-weight: 400;
+    line-height: 1;
+    color: #b47e70;
+}
+
+.music-welcome-card p {
+    margin: 0 auto 25px;
+    max-width: 320px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #5e5149;
+}
+
+.music-welcome-button {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 13px 34px;
+    min-width: 145px;
+    font: 500 12px/1 "DM Sans", sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #8f665b;
+    box-shadow: 0 10px 25px rgba(88, 58, 48, .2);
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.music-welcome-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(88, 58, 48, .25);
+}
+
+.music-welcome-button:active {
+    transform: translateY(0);
+}
+
+body.music-popup-open {
+    overflow: hidden !important;
+}
+
+@media (max-width: 520px) {
+    .music-welcome-overlay {
+        padding: 18px;
+    }
+    .music-welcome-card {
+        padding: 34px 22px 28px;
+        border-radius: 20px;
+    }
+}
+
 </style>
 <style>
 /* ===== DEFINITIVE FOOTER END FIX ===== */
@@ -1996,6 +2104,19 @@ body > script { display: none !important; }
 </head>
 
 <body>
+
+<!-- ======================================================
+     WELCOME / MUSIC START POPUP
+====================================================== -->
+<div class="music-welcome-overlay" id="musicWelcome" aria-hidden="true">
+    <div class="music-welcome-card" role="dialog" aria-modal="true" aria-labelledby="musicWelcomeTitle">
+        <div class="music-welcome-ornament">✦ ❦ ✦</div>
+        <h2 id="musicWelcomeTitle">Hope you will visit us</h2>
+        <p>We would be delighted to have you celebrate this beautiful beginning with us.</p>
+        <button class="music-welcome-button" id="musicContinue" type="button">Continue</button>
+    </div>
+</div>
+
 
 <!-- ======================================================
      LOADER
@@ -2057,7 +2178,6 @@ body > script { display: none !important; }
 <audio
     id="music"
     autoplay
-    muted
     loop
     preload="auto"
     playsinline
@@ -2574,62 +2694,89 @@ window.addEventListener("load", () => {
 
 
 /* -------------------------------------------------------
-   MUSIC
+   MUSIC — START AFTER WELCOME POPUP
 ------------------------------------------------------- */
 
-const music =
-    document.getElementById("music");
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+const musicWelcome = document.getElementById("musicWelcome");
+const musicContinue = document.getElementById("musicContinue");
 
-const musicButton =
-    document.getElementById("musicButton");
+function setMusicButtonPlaying() {
+    musicButton.innerHTML = "♫";
+    musicButton.setAttribute("aria-pressed", "true");
+    musicButton.classList.add("music-playing");
+}
 
-/*
-   MOBILE AUTOPLAY BEHAVIOUR
-   Browsers allow autoplay when audio starts muted.
-   The invitation therefore starts the music silently.
-   The first tap on the music button turns the sound on.
-*/
-async function startMutedMusic() {
+function setMusicButtonPaused() {
+    musicButton.innerHTML = "♪";
+    musicButton.setAttribute("aria-pressed", "false");
+    musicButton.classList.remove("music-playing");
+}
+
+async function startMusicFromUserAction() {
     try {
-        music.muted = true;
+        music.muted = false;
+        music.volume = 1;
         await music.play();
-        musicButton.innerHTML = "♪";
-        musicButton.setAttribute("aria-pressed", "false");
+        setMusicButtonPlaying();
+        return true;
     } catch (error) {
-        // Some browsers still require an initial interaction.
-        // The music button below will start it when tapped.
+        // The Continue tap is already a user gesture. If the browser
+        // still rejects playback, keep the popup closed and allow the
+        // music button to retry.
+        return false;
     }
 }
 
-window.addEventListener("load", startMutedMusic);
+function closeMusicWelcome() {
+    musicWelcome.classList.remove("show");
+    musicWelcome.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("music-popup-open");
+}
 
+// Show the welcome popup shortly after the page loads.
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        musicWelcome.classList.add("show");
+        musicWelcome.setAttribute("aria-hidden", "false");
+        document.body.classList.add("music-popup-open");
+        musicContinue.focus({ preventScroll: true });
+    }, 1200);
+});
 
+// The visitor's Continue tap is the user gesture that starts the music.
+musicContinue.addEventListener("click", async () => {
+    await startMusicFromUserAction();
+    closeMusicWelcome();
+});
+
+// Existing music control remains available after the popup is closed.
 musicButton.addEventListener("click", async () => {
     try {
-        if (music.muted) {
-            // First tap: keep the track playing, but turn its sound on.
+        if (music.paused) {
             music.muted = false;
             await music.play();
-            musicButton.innerHTML = "♫";
-            musicButton.setAttribute("aria-pressed", "true");
-            musicButton.classList.add("music-playing");
-        } else if (music.paused) {
-            await music.play();
-            musicButton.innerHTML = "♫";
-            musicButton.setAttribute("aria-pressed", "true");
-            musicButton.classList.add("music-playing");
+            setMusicButtonPlaying();
+        } else if (music.muted) {
+            music.muted = false;
+            music.volume = 1;
+            setMusicButtonPlaying();
         } else {
             music.pause();
-            musicButton.innerHTML = "♪";
-            musicButton.setAttribute("aria-pressed", "false");
-            musicButton.classList.remove("music-playing");
+            setMusicButtonPaused();
         }
     } catch (error) {
-        music.muted = false;
-        musicButton.innerHTML = "♫";
+        // Allow the next user tap to retry playback.
     }
 });
 
+// Escape closes the popup without starting music.
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && musicWelcome.classList.contains("show")) {
+        closeMusicWelcome();
+    }
+});
 
 /* -------------------------------------------------------
    COUNTDOWN
