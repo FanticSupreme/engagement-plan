@@ -2782,10 +2782,11 @@ document.addEventListener("keydown", (event) => {
    COUNTDOWN
 ------------------------------------------------------- */
 
+// Engagement date: 23 October 2026 at 7:00 PM IST (New Delhi)
+// The explicit +05:30 offset keeps the countdown correct regardless
+// of the visitor's device/browser timezone.
 const engagementDate =
-    new Date(
-        "October 23, 2026 19:00:00"
-    ).getTime();
+    new Date("2026-10-23T19:00:00+05:30").getTime();
 
 
 function updateCountdown() {
